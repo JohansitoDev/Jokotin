@@ -1,0 +1,31 @@
+api get "/users" do
+  users = db.all("users")
+  return users json
+end
+
+api post "/users" do
+  user = req.body
+  user.id = uuid.generate()
+  db.insert("users", user)
+  return { message: "User created", id: user.id } status 201
+end
+
+api get "/users/:id" do
+  user = db.find("users", id: req.params.id)
+  if user
+    return user json
+  else
+    return { error: "Not found" } status 404
+  end
+end
+
+api put "/users/:id" do
+  user = req.body
+  db.update("users", req.params.id, user)
+  return { message: "User updated" } json
+end
+
+api delete "/users/:id" do
+  db.delete("users", req.params.id)
+  return { message: "User deleted" } json
+end

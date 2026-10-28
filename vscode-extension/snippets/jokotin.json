@@ -1,0 +1,56 @@
+{
+  "GET route": {
+    "prefix": "get",
+    "body": [
+      "api get \"${1:/items}\" do",
+      "  ${2:items = db.all(\"items\")}",
+      "  return ${3:items} json",
+      "end"
+    ],
+    "description": "Create a JSON GET route"
+  },
+  "POST route": {
+    "prefix": "post",
+    "body": [
+      "api post \"${1:/items}\" do",
+      "  ${2:item = req.body}",
+      "  db.insert(\"${3:items}\", item)",
+      "  return \"${4:Created}\" status 201",
+      "end"
+    ],
+    "description": "Create a POST route"
+  },
+  "Require route file": {
+    "prefix": "require",
+    "body": [
+      "require \"./${1:routes/items}\""
+    ],
+    "description": "Import a Jokotin file relative to the current file"
+  },
+  "JWT login route": {
+    "prefix": "joklogin",
+    "body": [
+      "api post \"/auth/login\" do",
+      "  user = db.find(\"users\", email: req.body.email)",
+      "  if user and hash.check(req.body.password, user.password)",
+      "    token = jwt.create(user.id)",
+      "    return { token: token } json",
+      "  else",
+      "    return { error: \"Invalid credentials\" } status 401",
+      "  end",
+      "end"
+    ],
+    "description": "Verify a password hash and return a signed JWT"
+  },
+  "Backend entry point": {
+    "prefix": "jokserver",
+    "body": [
+      "# Entry point. Route files are imported relative to this file.",
+      "require \"./routes/${1:users}\"",
+      "",
+      "server ${2:3000}",
+      "jk \"Jokotin running on http://localhost:${2:3000}\""
+    ],
+    "description": "Create a small backend entry point"
+  }
+}

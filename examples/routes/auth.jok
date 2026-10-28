@@ -1,0 +1,34 @@
+api post "/auth/register" do
+  if req.body.email == nil or req.body.email == "" or req.body.password == nil or req.body.password == ""
+    return { error: "Email and password are required" } status 400
+  end
+  existing = db.find("users", email: req.body.email)
+  if existing
+    return { error: "Email already registered" } status 409
+  end
+  user = req.body
+  user.id = uuid.generate()
+  user._password_hash = hash.make(user.password)
+  user.password = nil
+  db.insert("users", user)
+  return { message: "Account created", id: user.id } status 201
+end
+
+api post "/auth/login" do
+  user = db.find("users", email: req.body.email)
+  if user and hash.check(req.body.password, user._password_hash)
+    token = jwt.create(user.id)
+    return { token: token } json
+  else
+    return { error: "Invalid credentials" } status 401
+  end
+end
+
+api get "/auth/profile" do
+  claims = jwt.verify(req.headers.authorization)
+  if claims
+    return { user_id: claims.sub } json
+  else
+    return { error: "Unauthorized" } status 401
+  end
+end

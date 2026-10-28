@@ -1,0 +1,58 @@
+{
+  "name": "jokotin-language",
+  "displayName": "Jokotin Language",
+  "description": "Creado por el ingeniero Johan Antonio Mancebo Lebron, también conocido como JohansitoDev. Hecho con mucho amor.",
+  "version": "0.1.2",
+  "publisher": "jokotin",
+  "author": "Johan Antonio Mancebo Lebron (JohansitoDev)",
+  "icon": "images/jokotin.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "jokotin",
+        "aliases": [
+          "Jokotin",
+          "jok"
+        ],
+        "extensions": [
+          ".jok"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "jokotin",
+        "scopeName": "source.jokotin",
+        "path": "./syntaxes/jokotin.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "jokotin",
+        "path": "./snippets/jokotin.json"
+      }
+    ],
+    "themes": [
+      {
+        "label": "Jokotin Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/jokotin-dark-color-theme.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "jokotin-icons",
+        "label": "Jokotin Icons",
+        "path": "./themes/jokotin-icons.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "iconDefinitions": {
+    "_jokotin": {
+      "iconPath": "../images/jokotin-file.svg"
+    }
+  },
+  "fileExtensions": {
+    "jok": "_jokotin"
+  }
+}

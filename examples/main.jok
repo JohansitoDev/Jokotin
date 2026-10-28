@@ -1,0 +1,8 @@
+# Punto de entrada. Las rutas se importan desde archivos relativos.
+require "./routes/users"
+require "./routes/auth"
+
+db connect "sqlite:./data/jokotin.db"
+
+server 3000
+jk "Jokotin running on http://localhost:3000"

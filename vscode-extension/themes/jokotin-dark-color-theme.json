@@ -1,0 +1,72 @@
+{
+  "name": "Jokotin Dark",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#111827",
+    "editor.foreground": "#E5E7EB",
+    "editorLineNumber.foreground": "#64748B",
+    "editorLineNumber.activeForeground": "#38BDF8",
+    "editorCursor.foreground": "#F8FAFC",
+    "editor.selectionBackground": "#334155",
+    "editorIndentGuide.background1": "#293548",
+    "editorIndentGuide.activeBackground1": "#38BDF8"
+  },
+  "tokenColors": [
+    {
+      "scope": ["comment", "punctuation.definition.comment"],
+      "settings": {
+        "foreground": "#7C8BA1",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "scope": [
+        "keyword.control",
+        "keyword.declaration",
+        "keyword.operator",
+        "keyword.control.import",
+        "keyword.control.route"
+      ],
+      "settings": {
+        "foreground": "#C084FC",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": ["entity.name.method"],
+      "settings": {
+        "foreground": "#FBBF24",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": [
+        "string",
+        "string.quoted",
+        "string.unquoted.route",
+        "string.quoted.other.import-path"
+      ],
+      "settings": {
+        "foreground": "#86EFAC"
+      }
+    },
+    {
+      "scope": ["constant.numeric", "constant.language"],
+      "settings": {
+        "foreground": "#FDBA74"
+      }
+    },
+    {
+      "scope": ["support.function", "variable.language"],
+      "settings": {
+        "foreground": "#67E8F9"
+      }
+    },
+    {
+      "scope": ["variable.other"],
+      "settings": {
+        "foreground": "#93C5FD"
+      }
+    }
+  ]
+}

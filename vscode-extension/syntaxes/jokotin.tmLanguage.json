@@ -1,0 +1,115 @@
+{
+  "scopeName": "source.jokotin",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#imports" },
+    { "include": "#routes" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#builtins" },
+    { "include": "#constants" },
+    { "include": "#operators" },
+    { "include": "#numbers" },
+    { "include": "#variables" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.jokotin",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.jokotin",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.jokotin",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "imports": {
+      "patterns": [
+        {
+          "match": "\\b(require)\\s+(\"[^\"]+\")",
+          "captures": {
+            "1": { "name": "keyword.control.import.jokotin" },
+            "2": { "name": "string.quoted.other.import-path.jokotin" }
+          }
+        }
+      ]
+    },
+    "routes": {
+      "patterns": [
+        {
+          "match": "\\b(api)\\s+([a-zA-Z]+)\\s+(\"[^\"]+\")",
+          "captures": {
+            "1": { "name": "keyword.control.route.jokotin" },
+            "2": { "name": "entity.name.method.jokotin" },
+            "3": { "name": "string.unquoted.route.jokotin" }
+          }
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.jokotin",
+          "match": "\\b(do|end|if|else|elsif|and|or|not|return)\\b"
+        },
+        {
+          "name": "keyword.declaration.jokotin",
+          "match": "\\b(server|json)\\b"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.jokotin",
+          "match": "\\b(db\\.(?:connect|all|find|insert|update|delete)|hash\\.(?:make|check)|jwt\\.(?:create|verify)|uuid\\.generate|jk)\\b"
+        },
+        {
+          "name": "variable.language.jokotin",
+          "match": "\\b(req\\.(?:body(?:\\.\\w+)?|params(?:\\.\\w+)?|query(?:\\.\\w+)?|headers(?:\\.\\w+)?|method|path))\\b"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.jokotin",
+          "match": "\\b(true|false|nil)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.jokotin",
+          "match": "==|!=|<=|>=|=|\\?|:"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.jokotin",
+          "match": "\\b\\d+\\b"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.assignment.jokotin",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*(?=\\s*=)"
+        }
+      ]
+    }
+  }
+}
